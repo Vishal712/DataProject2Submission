@@ -1,0 +1,149 @@
+<!DOCTYPE HTML>
+<!--
+	Forty by Pixelarity
+	pixelarity.com | hello@pixelarity.com
+	License: pixelarity.com/license
+-->
+<html>
+	<head>
+		<title>Untitled</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="../static/assets/css/main.css" />
+		<link rel="stylesheet" href="../static/assets/css/noscript.css" />
+		<link  href="https://cdnjs.cloudflare.com/ajax/libs/awesomplete/1.1.5/awesomplete.css">
+		<link rel="shortcut icon" href="">
+	</head>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+				<!-- Note: The "styleN" class below should match that of the banner element. -->
+					<header id="header" class="alt style2">
+						<a href="/" class="logo"><strong>NCAA to NBA</strong> <span>Comparing Statistics & Profiles</span></a>
+						<nav>
+							<a href="#menu">Menu</a>
+						</nav>
+					</header>
+
+				<!-- Menu -->
+					<nav id="menu">
+						<ul class="links">
+							<li><a href="/">Home</a></li>
+							<li><a href="/data">Data Comparison</a></li>
+							<li><a href="generic.html">Generic</a></li>
+							<li><a href="/profile">Profile Chart</a></li>
+						</ul>
+						<ul class="actions stacked">
+							<li><a href="#" class="button primary fit">Get Started</a></li>
+							<li><a href="#" class="button fit">Log In</a></li>
+						</ul>
+					</nav>
+
+				<!-- Banner -->
+				<!-- Note: The "styleN" class below should match that of the header element. -->
+					<section id="banner" class="style2">
+						<div class="inner">
+							<span class="image">
+								<img src="../static/images/pic07.jpg" alt="" />
+							</span>
+							<header class="major">
+								<h1>Data Comparison</h1>
+							</header>
+							<div class="content">
+								<p>View individual player statistics for college versus the NBA.</p>
+							</div>
+						</div>
+					</section>
+
+				<!-- Main -->
+					<div id="main">
+
+						<!-- One -->
+							<section id="one">
+								<div class="inner">
+									<h3>Choose Player</h3>
+									<form>
+									<input id = "playerchosen" class="awesomplete" style="color:black" placeholder="Kevin Durant" list="player_dropdown" /> 
+									<button id="filter-btn" type="button" class="btn btn-default">Get Player Data</button>
+									</form>
+									<datalist id= "player_dropdown"></datalist>
+									<header class="major">
+										<h2 id = "selectedplayername">
+                                            {{playername}}
+										</h2>	
+									</header>
+									<table>
+										<thead>
+										  <tr>
+											<th class="table-head">Category</th>
+											<th class="table-head">College Statistic</th>
+											<th class="table-head">NBA Statistic</th>
+										  </tr>
+										</thead>
+										<tbody>
+											<tr>
+											<td id = "PPG">PPG</td>
+											<td id = "CollegePPG">-</td>
+											<td id = "NBAPPG">-</td>
+											</tr>
+											<tr>
+											<td id = "APG">APG</td>
+											<td id = "CollegeAPG">-</td>
+											<td id = "NBAAPG">-</td>
+											</tr>
+											<tr>
+											<td id = "RPG">RPG</td>
+											<td id = "CollegeRPG">-</td>
+											<td id = "NBARPG">-</td>
+											</tr>
+											<tr>
+											<td id = "BPG">BPG</td>
+											<td id = "CollegeBPG">-</td>
+											<td id = "NBABPG">-</td>
+											</tr>
+											<tr>
+											<td id = "SPG">SPG</td>
+											<td id = "CollegeSPG">-</td>
+											<td id = "NBASPG">-</td>
+											</tr>
+											<tr>
+											<td id = "FG">FG%</td>
+											<td id = "CollegeFG">-</td>
+											<td id = "NBAFG">-</td>
+											</tr>
+											<tr>
+											<td id = "3P">3P%</td>
+											<td id = "College3P">-</td>
+											<td id = "NBA3P">-</td>
+											</tr>
+										</tbody>
+									  </table>
+									  <div id = "bar-plot"></div>
+									  <div id = "percentages-plot"></div>
+								</div>
+							</section>
+					</div>
+
+						
+			</div>
+
+		<!-- Scripts -->
+			<script src="https://d3js.org/d3.v5.min.js"></script>
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.11.0/d3.js"></script>
+			<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+			<script src ="../static/assets/js/datapageplayer.js"></script>
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/awesomplete/1.1.5/awesomplete.js"></script>
+			<script src="../static/assets/js/jquery.min.js"></script>
+			<script src="../static/assets/js/jquery.scrolly.min.js"></script>
+			<script src="../static/assets/js/jquery.scrollex.min.js"></script>
+			<script src="../static/assets/js/browser.min.js"></script>
+			<script src="../static/assets/js/breakpoints.min.js"></script>
+			<script src="../static/assets/js/util.js"></script>
+			<script src="../static/assets/js/main.js"></script>
+			
+
+	</body>
+</html>
