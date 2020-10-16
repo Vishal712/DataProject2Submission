@@ -30,7 +30,6 @@ def profile():
 @app.route("/NBAData")
 def NBAData():
     NBA = db.NBA
-    print(NBA.find_one())
     docs = []
     for doc in NBA.find():
         doc.pop('_id') 
@@ -40,7 +39,6 @@ def NBAData():
 @app.route("/NCAAData")
 def NCAAData():
     NCAA = db.NCAA
-    print(NCAA.find_one())
     docs = []
     for doc in NCAA.find():
         doc.pop('_id') 
@@ -52,6 +50,15 @@ def NBALocation():
     NBA_Location = db.NBA_Location
     docs = []
     for doc in NBA_Location.find():
+        doc.pop('_id') 
+        docs.append(doc)
+    return jsonify(docs)
+
+@app.route("/Averages")
+def Averages():
+    schoolAverage = db.schoolAverage
+    docs = []
+    for doc in schoolAverage.find():
         doc.pop('_id') 
         docs.append(doc)
     return jsonify(docs)
