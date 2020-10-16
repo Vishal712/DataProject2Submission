@@ -6,7 +6,7 @@
 -->
 <html>
 	<head>
-		<title>Proposal</title>
+		<title>About/Inspiration</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="static/assets/css/main.css" />
@@ -37,10 +37,6 @@
 							<li><a href="/map">Map</a></li>
 							<li><a href="/profile">Profile Chart</a></li>
 						</ul>
-						<ul class="actions stacked">
-							<li><a href="#" class="button primary fit">Get Started</a></li>
-							<li><a href="#" class="button fit">Log In</a></li>
-						</ul>
 					</nav>
 
 				<!-- Banner -->
@@ -51,7 +47,7 @@
 								<img src="static/images/pic01.jpg" alt="" />
 							</span>
 							<header class="major">
-								<h1>Project Goals</h1>
+								<h1>Project Goals/About</h1>
 							</header>
 							<div class="content">
 								<p>What is the purpose of our project?</p>
@@ -72,7 +68,7 @@
                                     translate from college to the NBA. This means we take a look at each player in the NBA today,
                                     and compare their career stats in the NBA, and their previous career stats in college. This is the
                                     same topic as we’ve chosen for Project 1 for our group, only this time we are now focusing more
-                                    so on the visualization aspect of the data, as it's the requirement for Project 2. We chose this
+                                    so on the visualization aspect of the data. We chose this
                                     topic because we were inspired by the variability of something like the NBA Draft, where it is
                                     hard for GMs to find out how a player will play in the NBA from college, and we wanted to see
                                     if we could help clear up this draft process, and create visualizations, and eventually for Project
@@ -81,9 +77,12 @@
                                     <header class="major">
                                         <h2>Data</h2>
                                     </header>
-                                    <p>The first dataset is from a sportsreference package that scrapes data fromBasketball-Reference.com, found on PyPi, and includes objects for both NBA players andCollege Players. This gives us most data for stats found in college and in the NBA. This is alsothe same dataset for player stats we used in Project 1. (​https://pypi.org/project/sportsreference/​)</p>
-								<ul class="actions">
-									<li><a href="landing.html" class="button next">Get Started</a></li>
+                                    <p>The first dataset is from a sportsreference package that scrapes data fromBasketball-Reference.com, found on PyPi, and includes objects for both NBA players and College Players. This gives us most of the data for stats found in college and in the NBA. This is also the same dataset for player stats we used in Project 1. (​https://pypi.org/project/sportsreference/​)</p>
+									<p>The next dataset comes from Kaggle, and we only used this csv to gather the names of colleges for each player, so that a Google Maps API could retrieve the lattitude and longitude. (https://www.kaggle.com/justinas/nba-players-data)</p>
+									<img src = "../static/images/mongoAtlas.png" class="center">
+									<p>After merging the NCAA and NBA data, and transforming the data to what we need, we deployed each collection on a cloud based MongoDB Atlas server.</p>
+									<ul class="actions">
+									
 								</ul>
 							</div>
 						</section>

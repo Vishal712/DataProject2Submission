@@ -13,22 +13,27 @@ db = client.NBA_NCAA
 
 @app.route("/")
 def index():
+    #Home page
     return render_template("index.html")
 
 @app.route("/data")
 def data():
+    #Data comparison page
     return render_template("datapage.html")
 
 @app.route("/data/<player>")
 def dataplayer(player):
+    #Go to a specific player's comparison page used in tooltip
     return render_template("dataplayerpage.html", playername = player)
 
 @app.route("/profile")
 def profile():
+    #For looking at Height and Weight and how it affects players averages in the NBA
     return render_template("updatedprofile.html")
 
 @app.route("/map")
 def map():
+    #Takes to the map page. Mapping the colleges on the map
     return render_template("map.html")
 
 @app.route("/proposal")

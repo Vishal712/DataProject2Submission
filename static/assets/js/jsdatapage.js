@@ -24,7 +24,7 @@ function runForm(){
     player_title.text(awesomeValue)
     d3.json("/NBAData", function(nba_data){
         d3.json("/NCAAData", function(ncaa_data){
-        
+            //Filter the data for the player and get the information needed
             console.log(nba_data)
             console.log(ncaa_data)
             var filteredNBA = nba_data.filter(playername => playername.Name == awesomeValue)[0];
@@ -53,7 +53,7 @@ function runForm(){
             var collegepercentages = [filteredNCAA["FGP"]*100, filteredNCAA["3PG"] * 100]
             var nbavalues = [filteredNBA.PPG, filteredNBA.APG, filteredNBA.RPG, filteredNBA.BPG, filteredNBA.SPG] 
             var nbapercentages = [filteredNBA["FGP"]*100, filteredNBA["3PG"] * 100]
-
+            //Per game stats plotted using Plotly
             var trace1 = {
                 x: xCategories,
                 y: collegevalues,
