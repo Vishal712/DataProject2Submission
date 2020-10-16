@@ -27,6 +27,14 @@ def dataplayer(player):
 def profile():
     return render_template("updatedprofile.html")
 
+@app.route("/map")
+def map():
+    return render_template("map.html")
+
+@app.route("/proposal")
+def proposal():
+    return render_template("proposal.html")
+
 @app.route("/NBAData")
 def NBAData():
     NBA = db.NBA

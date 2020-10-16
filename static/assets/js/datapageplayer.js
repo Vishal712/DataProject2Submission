@@ -88,17 +88,7 @@ d3.json("/NBAData", function(nba_data){
     })
 })
 
-
-
-
-
-
-
-
-
-
-
-
+//Now the user can submit a name to the search box like usual
 
 
 var button = d3.select("#filter-btn");

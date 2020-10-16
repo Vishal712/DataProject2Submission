@@ -17,8 +17,8 @@ L.tileLayer("https://api.mapbox.com/styles/v1/hyrum78/ckg9tsvf803p519pet1f9cbmk/
 }).addTo(myMap);
 
 
-d3.csv("../static/assets/data/NBALocation.csv", function(data) {
-
+d3.json("/NBALocation", function(data) {
+  console.log(data)
   var markers = L.markerClusterGroup();
   for (i = 0; i < data.length; i++) {
     var location = [data[i].lat, data[i].lng]
