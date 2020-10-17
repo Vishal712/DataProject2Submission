@@ -2,6 +2,7 @@
 # Data Creation/ Data Cleaning
 #Getting the datasets for both NBA and NCAA and cleaning them
 
+#pip install dnspython is needed for mongo portion
 
 #pip install sportsreference is needed to run this code, as it contains data from the popular Sportsreference website. The documentation is listed here: https://sportsreference.readthedocs.io/en/stable/sportsreference.html
 #The pypi site for this package is listed here: https://pypi.org/project/sportsreference/
@@ -14,6 +15,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from sportsreference.ncaab.roster import Player
 from sportsreference.nba.roster import Roster
+import pymongo
 
 def scrape_info():
     print("Getting Data and storing in Mongo(This will take some time)")
@@ -340,7 +342,7 @@ def scrape_info():
     #player_college_df.head()
 
 
-
+    #finding the coordinate of the school
     gkey = "AIzaSyAQzjQQxNwPTSCT4Yv2IolnWjYbXZWrsNs"
     for index, row in player_college_df.iterrows():
         
@@ -564,8 +566,12 @@ def scrape_info():
     #dropping Lou Willima since he came straight out of HS
     ncaa_clean.drop(index='Lou Williams',inplace = True)
 
-    #replace all of the -999 to nan
-    ncaa_clean = ncaa_clean.replace(-999.0, np.nan)
+    #replace all of the -999 to 0
+    ncaa_clean = ncaa_clean.replace(-999.0, 0)
+    ncaa_clean = ncaa_clean.replace(np.nan, 0)
+
+    nba_clean = nba_clean.replace(-999.0, 0)
+    nba_clean = nba_clean.replace(np.nan, 0)
     # ncaa_clean
 
 
@@ -573,20 +579,37 @@ def scrape_info():
     ncaa_clean.reset_index(inplace = True)
 
 
-
+    
     #exporting the csv files in case of mongo failure
-    #nba_clean.to_csv('static/assets/data/NBA_Data.csv', index = False)
-    #ncaa_clean.to_csv('static/assets/data/NCAA_Data.csv', index = False)
-    #nba_location.to_csv('static/assets/data/NBA_Location.csv', index = False)
+    #nba_clean.to_csv('static/assets/data/NBAData.csv', index = False)
+    #ncaa_clean.to_csv('static/assets/data/NCAAData.csv', index = False)
+    #nba_location.to_csv('static/assets/data/NBALocation.csv', index = False)
+    # schoolAvg.to_csv('static/assets/data/schoolAverage.csv', index = False)
 
+    #convert the values to float
+    nba_location["PPG"] = nba_location["PPG"].astype("float")
+    nba_location["APG"] = nba_location["APG"].astype("float")
+    nba_location["RPG"] = nba_location["RPG"].astype("float")
 
+    #creating a document where we can find the avereage stat for each player from a particular school 
+    grouped_school = nba_location.groupby(["school"])
+    avgPPG = grouped_school["PPG"].mean()
+    avgAPG = grouped_school["APG"].mean()
+    avgRPG = grouped_school["RPG"].mean()
 
+    schoolAvg = pd.DataFrame({
+        "PPG" : avgPPG,
+        "APG": avgAPG,
+        "RPG" : avgRPG,
+    })
 
-    #Now putting these dataframes into local mongo database. So that app.py flask app can pull the data from Mongo and store them as csv's
+    #noticed there was a black entry for one of the school, which was New Mexico
+    #added the fill in the black entry of the school
+    schoolAvg.reset_index(inplace = True)
+    schoolAvg.sort_values(by=["school"],inplace = True)
+    schoolAvg.iloc[0,0] = "New Mexico"
 
-
-
-    import pymongo
+    #Now putting these dataframes into cloud mongo atlas. So that app.py flask app can pull the data from Mongo
 
     conn = 'mongodb+srv://sabu:cp3@cluster0.suglk.mongodb.net/test'
     client = pymongo.MongoClient(conn)
@@ -598,24 +621,29 @@ def scrape_info():
     db.NBA.drop()
     db.NCAA.drop()
     db.NBA_Location.drop()
+    db.schoolAvereage.drop()
 
     # Declare the collection
     NBA = db.NBA
     NCAA = db.NCAA
     NBA_Location = db.NBA_Location
+    schoolAverage = db.schoolAverage
 
-    #Convert the NBA dataframe into a dictionary and insert into Mongo
+    #Convert the NBA dataframe into a dictionary and insert into Mongo Atlas
     NBA_dict = nba_clean.to_dict('records')
     NBA.insert_many(NBA_dict)
 
-    #Convert the NCAAl dataframe into a dictionary and insert into Mongo.
-
+    #Convert the NCAAl dataframe into a dictionary and insert into Mongo Atlas.
     NCAA_dict = ncaa_clean.to_dict('records')
     NCAA.insert_many(NCAA_dict)
 
-    #Convert the NCAAl dataframe into a dictionary and insert into Mongo.
+    #Convert the NCAAl dataframe into a dictionary and insert into Mongo Atlas.
     NBA_Location_dict = nba_location.to_dict('records')
     NBA_Location.insert_many(NBA_Location_dict)
+
+    #addding a new collection to know school's average Stat from each player
+    schoolAverage_dict = schoolAvg.to_dict('records')
+    schoolAverage.insert_many(schoolAverage_dict)
 
     print("Done. Data stored in Mongo")
 
