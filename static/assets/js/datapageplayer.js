@@ -106,8 +106,8 @@ function runForm(){
     player_title.text(awesomeValue)
 
     console.log(awesomeValue)
-    d3.csv("../static/assets/data/NBAData.csv", function(nba_data){
-        d3.csv("../static/assets/data/NCAAData.csv", function(ncaa_data){
+    d3.json("/NBAData", function(nba_data){
+        d3.json("/NCAAData", function(ncaa_data){
             var filteredNBA = nba_data.filter(playername => playername.Name == awesomeValue)[0];
             var filteredNCAA = ncaa_data.filter(playername => playername.Name == awesomeValue)[0];
             console.log(filteredNBA)
