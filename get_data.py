@@ -621,7 +621,7 @@ def scrape_info():
     db.NBA.drop()
     db.NCAA.drop()
     db.NBA_Location.drop()
-    db.schoolAvereage.drop()
+    db.schoolAverage.drop()
 
     # Declare the collection
     NBA = db.NBA
