@@ -156,7 +156,7 @@ d3.json("/NBAData", function(nbaData) {
       data.RPG = +data.RPG
       data.TPG = +data.TPG
   });
-  // xLinearScale function above csv import
+  // xLinearScale function above json import
   var xLinearScale = xScale(nbaData, chosenXAxis)
 
   // Create y scale function
@@ -250,7 +250,7 @@ d3.json("/NBAData", function(nbaData) {
     .classed("inactive", true)
     .text("TPG");
 
-  // UpdateToolTip function above csv import
+  // UpdateToolTip function above json import
   var circlesGroup = updateToolTip(chosenXAxis, chosenYAxis, circles, circleLabels);
 
   // X axis labels event listener
