@@ -143,7 +143,7 @@ function updateToolTip(chosenXAxis, chosenYAxis, circlesGroup, circleLabels) {
   return circlesGroup;
 }
 
-// Retrieve data from the CSV file and execute everything below
+// Retrieve data from the Json  and execute everything below
 d3.json("/NBAData", function(nbaData) {
   
 
