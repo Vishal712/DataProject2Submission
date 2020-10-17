@@ -59,12 +59,12 @@
 					<div id="main">
 
 						<!-- One -->
-						<section id="one">
-							<div class="inner">
-								<header class="major">
-									<h2>Topic</h2>
-								</header>
-								<p>The topic we’ve chosen is about basketball, specifically about how college basketball players
+                        <section id="one">
+                            <div class="inner">
+                                <header class="major">
+                                    <h2>Topic</h2>
+                                </header>
+                                <p>The topic we’ve chosen is about basketball, specifically about how college basketball players
                                     translate from college to the NBA. This means we take a look at each player in the NBA today,
                                     and compare their career stats in the NBA, and their previous career stats in college. This is the
                                     same topic as we’ve chosen for Project 1 for our group, only this time we are now focusing more
@@ -75,17 +75,19 @@
                                     3, predictive models that can help tell us how a player will do in the NBA from college stats.
                                     </p>
                                     <header class="major">
-                                        <h2>Data</h2>
+                                        <h2>Creating and Cleaning Data</h2>
                                     </header>
-                                    <p>The first dataset is from a sportsreference package that scrapes data fromBasketball-Reference.com, found on PyPi, and includes objects for both NBA players and College Players. This gives us most of the data for stats found in college and in the NBA. This is also the same dataset for player stats we used in Project 1. (​https://pypi.org/project/sportsreference/​)</p>
-									<p>The next dataset comes from Kaggle, and we only used this csv to gather the names of colleges for each player, so that a Google Maps API could retrieve the lattitude and longitude. (https://www.kaggle.com/justinas/nba-players-data)</p>
-									<img src = "../static/images/mongoAtlas.png" class="center">
-									<p>After merging the NCAA and NBA data, and transforming the data to what we need, we deployed each collection on a cloud based MongoDB Atlas server.</p>
-									<ul class="actions">
-									
-								</ul>
-							</div>
-						</section>
+                                    <p>We have retrieved the raw data from sportsrefernec through web scraping. We cleaned up the raw data by only using columns that we believe is necessary to use for our presentation. After condensing the data set, we have noticed that some of the entries within NCAA have irregular negative values. We took the time to fix those entries manually within the python code. We have also replaced -999 or NaN values with 0 so the data can be properly read for graph and chart creation. We have also changed the name of the players so data sets will be consistent with the player’s name. With this process, we have created NBA Data and NCAA Data
+                                        We merged the NBA Data with another dataset that contains which college each player has attended. With the merged dataset, we have found the coordinates (lat, lon) of the school by using Google Map API. We created a dataset that contains each players stat, school, and geocoordinate of the school. This dataset will be labeled as NBA Location
+                                        With NBA location dataset, we created a dataset find the average NBA PPG, APG, and RPG for students from a specific school. We have created that by having the NBA Location dataset groupby school then finding the average for PPG, APG, and RPG. We label this data set as School Average.</p>
+                                    <header class="major">
+                                        <h2>MongoDB Atlas</h2>
+                                    </header>
+                                    <p>After creating those dataframe we have decided to load all these data into a cloud server. Flask will access the server when it tries to retrieve the data for Table. We have created an account on MongoDB Atkas inorder to create a database with 4 collection (NBA Data, NCAA Data, NBA Location, School Average) within the cloud server.
+                                        We are using cloud server because we have noticed that the web scraping will take around 15 minutes. To prevent the delay, we believe that accessing the completed data set in the cloud will be faster and more efficient for our project.</p>
+                                    <img src = "../static/images/mongoAtlas.png" class="center">
+                                    <ul class="actions">
+                                </ul>
 					</div>
 
 						
